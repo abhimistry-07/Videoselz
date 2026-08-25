@@ -3,6 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ProductsModule } from './products/products.module';
+import { VideosModule } from './videos/videos.module';
+import { EngagementEventsModule } from './engagement-events/engagement-events.module';
 
 @Module({
   imports: [
@@ -18,6 +21,9 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
         synchronize: false,
       }),
     }),
+    ProductsModule,
+    VideosModule,
+    EngagementEventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
