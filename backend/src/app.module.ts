@@ -6,6 +6,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
 import { VideosModule } from './videos/videos.module';
 import { EngagementEventsModule } from './engagement-events/engagement-events.module';
+import { AnalyticsModule } from './analytics/analytics.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { EngagementEventsModule } from './engagement-events/engagement-events.mo
     ProductsModule,
     VideosModule,
     EngagementEventsModule,
+    AnalyticsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
