@@ -12,7 +12,7 @@ export class Product {
     @Column('decimal', { precision: 10, scale: 2 })
     price: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
 
     @OneToMany(() => Video, (video: Video) => video.product)

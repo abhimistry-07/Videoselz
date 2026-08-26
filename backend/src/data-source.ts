@@ -1,0 +1,12 @@
+import { DataSource } from 'typeorm';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+export const AppDataSource = new DataSource({
+  type: 'better-sqlite3',
+  database: process.env.DATABASE_PATH || 'data/db.sqlite',
+  entities: ['src/**/*.entity.ts'],
+  migrations: ['src/migrations/*.ts'],
+  synchronize: false,
+});

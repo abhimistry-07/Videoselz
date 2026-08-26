@@ -16,7 +16,7 @@ import { EngagementEventsModule } from './engagement-events/engagement-events.mo
       inject: [ConfigService],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
         type: 'better-sqlite3',
-        database: configService.get<string>('DATABASE_PATH') || './data/db.sqlite',
+        database: configService.getOrThrow<string>('DATABASE_PATH'),
         autoLoadEntities: true,
         synchronize: false,
       }),
