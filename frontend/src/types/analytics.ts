@@ -28,3 +28,10 @@ export interface EngagementEvent {
   eventType: EventType;
   timestamp: string;
 }
+
+export interface Video {
+  id: number;
+  productId: number;
+  videoUrl: string;
+  title: string;
+}

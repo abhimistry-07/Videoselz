@@ -1,28 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { VideosService } from './videos.service';
-import { CreateVideoDto } from './dto/create-video.dto';
 
 @Controller('videos')
 export class VideosController {
-  constructor(private readonly videosService: VideosService) { }
-
-  @Post()
-  create(@Body() createVideoDto: CreateVideoDto) {
-    return this.videosService.create(createVideoDto);
-  }
+  constructor(private readonly videosService: VideosService) {}
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.videosService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.videosService.findOne(+id);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.videosService.remove(+id);
   }
 }
