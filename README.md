@@ -335,6 +335,6 @@ This project was built with AI assistance throughout (Claude). Every significant
 ## Links
 
 - **Public GitHub Repository:** https://github.com/abhimistry-07/Videoselz
-- **Other Public Repositories:** `https://github.com/abhimistry-07/chat_app-mern`
+- **Other Public Repositories:** https://github.com/abhimistry-07/chat_app-mern
   <!-- - **YouTube Pitch (30s, private/unlisted):** `[PLACEHOLDER — add link here]` -->
-  <!-- - **Technical Walkthrough (Loom/screen recording, 3-5 min):** `[PLACEHOLDER — add link here]` -->
+- **Technical Walkthrough (Loom/screen recording, 3-5 min):** https://www.loom.com/share/99c20033f0194b1c963e10f4a30cd7af
