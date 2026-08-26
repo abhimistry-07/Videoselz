@@ -1,26 +1,32 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { EngagementEvent } from './entities/engagement-event.entity';
+import { Video } from '../videos/entities/video.entity';
+import { Repository } from 'typeorm';
 import { CreateEngagementEventDto } from './dto/create-engagement-event.dto';
-import { UpdateEngagementEventDto } from './dto/update-engagement-event.dto';
 
 @Injectable()
 export class EngagementEventsService {
-  create(createEngagementEventDto: CreateEngagementEventDto) {
-    return 'This action adds a new engagementEvent';
-  }
 
-  findAll() {
-    return `This action returns all engagementEvents`;
-  }
+  constructor(
+    @InjectRepository(EngagementEvent)
+    private readonly eventRepo: Repository<EngagementEvent>,
+    @InjectRepository(Video)
+    private readonly videoRepo: Repository<Video>,
+  ) { }
 
-  findOne(id: number) {
-    return `This action returns a #${id} engagementEvent`;
-  }
+  async create(dto: CreateEngagementEventDto): Promise<EngagementEvent> {
+    const video = await this.videoRepo.findOne({ where: { id: dto.videoId } });
 
-  update(id: number, updateEngagementEventDto: UpdateEngagementEventDto) {
-    return `This action updates a #${id} engagementEvent`;
-  }
+    if (!video) {
+      throw new NotFoundException(`Video with id ${dto.videoId} not found`);
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} engagementEvent`;
+    const event = this.eventRepo.create({
+      videoId: dto.videoId,
+      eventType: dto.eventType,
+    });
+
+    return this.eventRepo.save(event);
   }
 }
