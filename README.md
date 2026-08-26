@@ -317,6 +317,7 @@ Returns all videos (id, productId, videoUrl, title). Added beyond the spec's min
 ## Key Design Decisions
 
 - **Conditional aggregation (`SUM(CASE WHEN ...)`) over multiple JOINs** in the analytics query — avoids the cartesian-product row duplication bug that naive multi-JOIN aggregation queries commonly hit.
+- **`LEFT JOIN` & Zero-Event Edge Case Handling** — The analytics query uses a `LEFT JOIN` on `engagement_events` so videos without any engagement events are still included in the dataset (showing 0 views, 0 clicks, 0 add-to-carts). The seed script intentionally seeds a 5th video (`Earbuds Battery Life Test`) with zero events to explicitly verify this behavior and confirm the frontend's conversion-rate calculation correctly shows 0.0% rather than NaN%.
 - **Explicit migrations, not `synchronize: true`** — demonstrates a real schema-versioning workflow and avoids TypeORM silently altering/dropping columns.
 - **Conversion rate computed client-side**, per the spec's explicit requirement, with a guard against divide-by-zero on videos with no views.
 - **`GET /api/videos` added beyond the minimum spec** — a small, deliberate addition to remove a real fragility (hardcoded video IDs on the frontend), not scope creep.

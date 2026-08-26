@@ -64,6 +64,7 @@ import Pagination from "@/components/analytics/Pagination";
 import SimulateTrafficButton from "@/components/analytics/SimulateTrafficButton";
 import { getVideoAnalytics } from "@/lib/api";
 import type { VideoAnalytics } from "@/types/analytics";
+import SummaryCards from "@/components/analytics/SummaryCards";
 
 const PAGE_LIMIT = 10;
 
@@ -101,6 +102,7 @@ export default function Home() {
       {error && <p role="alert">Error: {error}</p>}
       {!loading && !error && (
         <>
+          <SummaryCards videos={videos} totalVideos={total} />
           <VideoAnalyticsTable videos={videos} />
           <Pagination
             page={page}
